@@ -13,6 +13,7 @@ SINGLETON_INTERFACE(ConfigManager)
 public:
     void initialize();
     std::string getPort() const;
+    std::string getFTPPort() const;
     std::string getServerHost() const;
     std::string getUsername() const;
 
@@ -23,6 +24,7 @@ private:
 private:
     std::string m_username;
     std::string m_port;
+    std::string m_ftpPort;
     std::string m_serverHost;
 };
 

@@ -7,22 +7,22 @@
 
 namespace Generic {
 
-class ChatMessage
+class FilePackage
 {
 public:
     static const int s_headerSize = sizeof(size_t);
 
 public:
-    ChatMessage();
+    FilePackage();
 
-    size_t      getLength()     const;
-    std::string getSender()     const;
-    std::string getText()       const;
-    const Byte* getRawData()    const;
+    size_t              getLength()     const;
+    std::string         getFilename()   const;
+    const ByteArray&    getFile()       const;
+    const Byte*         getRawData()    const;
 
     Byte*   getRawData();
-    void    setSender(const std::string& sender);
-    void    setText(const std::string& text);
+    void    setFilename(const std::string& filename);
+    void    setFile(ByteArray&& file);
     void    encode();
     void    decode();
     void    decodeHeader();
@@ -30,8 +30,8 @@ public:
 
 private:
     size_t      m_length;
-    std::string m_sender;
-    std::string m_text;
+    std::string m_filename;
+    ByteArray   m_file;
     ByteArray   m_rawData;
 };
 

@@ -12,6 +12,7 @@ SINGLETON_INTERFACE(ServerManager)
 
 public:
     void setPort(const uint16_t port);
+    void setFTPPort(const uint16_t port);
     void start();
 
 private:
@@ -20,6 +21,7 @@ private:
 
 private:
     uint16_t m_port;
+    uint16_t m_ftpPort;
 };
 
 } // namespace Server

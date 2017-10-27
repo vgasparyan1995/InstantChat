@@ -58,14 +58,14 @@ void ChatMessage::decode()
 
 void ChatMessage::decodeHeader()
 {
-    const auto* data = m_rawData.c_str();
+    const auto* data = getRawData();
     fromByteArray(data, m_length);
     m_rawData.resize(s_headerSize + m_length);
 }
 
 void ChatMessage::decodeBody()
 {
-    const auto* data = m_rawData.c_str();
+    const auto* data = getRawData();
     auto position = s_headerSize;
     position += fromByteArray(data + position, m_sender);
     position += fromByteArray(data + position, m_text);

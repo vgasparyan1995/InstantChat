@@ -12,6 +12,7 @@ void execute()
     confMgr.initialize();
     auto& server = ServerManager::getInstance();
     server.setPort(confMgr.getPort());
+    server.setFTPPort(confMgr.getFTPPort());
     server.start();
 }
 

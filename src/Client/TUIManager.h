@@ -62,6 +62,8 @@ public:
     void start();
     void showReceivedMessage(const Generic::ChatMessage& msg);
     void setMessageWriter(MsgWriter msgWriter);
+    void showInfo(const std::string& info);
+    bool yesNoDialog(const std::string& question);
 
 private:
     void print(const char* str);

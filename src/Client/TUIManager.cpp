@@ -71,6 +71,23 @@ void TUIManager::setMessageWriter(TUIManager::MsgWriter msgWriter)
     m_msgWriter = msgWriter;
 }
 
+void TUIManager::showInfo(const std::string& info)
+{
+    print("[I]", { TextAttribute::BOLD });
+    print("\t");
+    print(info.c_str());
+    print("\n");
+}
+
+bool TUIManager::yesNoDialog(const std::string& question)
+{
+    print("[Q]", { TextAttribute::BOLD });
+    print("\t");
+    print(info.c_str());
+    auto result = getch();
+    return result == 'y' || result == 'Y';
+}
+
 void TUIManager::print(const char* str)
 {
     printw(str);

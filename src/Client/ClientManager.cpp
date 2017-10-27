@@ -9,13 +9,19 @@ namespace Client {
 
 SINGLETON_DEFINITION(ClientManager)
 
-bool ClientManager::connectToServer(const std::string& host, const std::string& port)
+bool ClientManager::connectToServer()
 {
+    auto configMgr = ConfigManager::getInstance();
+    const auto host = configMgr.getHost();
+    const auto port = configMgr.getPort();
+    const auto ftpPort = configMgr.getFTPPort();
     try {
         asio::io_service service;
         asio::ip::tcp::resolver resolver(service);
         auto endpointIter = resolver.resolve({ host.c_str(), port.c_str() }); 
         ChatClient cClient(service, endpointIter);
+        auto ftpEndpointIter = resolver.resolve({ host.c_str(), ftpPort.c_str() }); 
+        FTPClient ftpClient(service, ftpEndpointIter);
         std::thread t([&service] () { service.run(); });
         std::this_thread::sleep_for(std::chrono::seconds(1));
         auto messageWriter = [&cClient] (const Generic::ChatMessage& msg)

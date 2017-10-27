@@ -12,7 +12,7 @@ void execute()
     auto& confMgr = ConfigManager::getInstance();
     confMgr.initialize();
     auto& clientMgr = ClientManager::getInstance();
-    if (!clientMgr.connectToServer(confMgr.getServerHost(), confMgr.getPort())) {
+    if (!clientMgr.connectToServer()) {
         std::cerr << "Could not reach the server." << std::endl;
     }
 }

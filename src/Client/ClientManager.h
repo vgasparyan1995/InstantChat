@@ -13,7 +13,7 @@ class ClientManager : public Generic::SingletonBase
 SINGLETON_INTERFACE(ClientManager)
 
 public:
-    bool connectToServer(const std::string& host, const std::string& port);
+    bool connectToServer();
     Generic::ChatMessage greetingMessage() const;
 
 private:

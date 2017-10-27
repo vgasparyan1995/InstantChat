@@ -18,8 +18,8 @@ void FTSession::start()
 
 void FTSession::deliver(const Generic::FilePackage& msg)
 {
-    auto isWriteInPorgress = !m_messagesToWrite.empty();
-    m_messagesToWrite.push_back(msg);
+    auto isWriteInPorgress = !m_filesToSend.empty();
+    m_filesToSend.push_back(msg);
     if (!isWriteInPorgress) {
         writeOne();
     }

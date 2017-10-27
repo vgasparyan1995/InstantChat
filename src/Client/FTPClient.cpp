@@ -54,15 +54,15 @@ void FTPClient::readHeader()
                     m_socket.close();
                     return;
                 }
-                m_lastReadMessage.decodeHeader();
+                m_lastReceivedFile.decodeHeader();
                 readBody();
             });
 }
 
-void ChatClient::readBody()
+void FTPClient::readBody()
 {
     const auto headerSize = Generic::ChatMessage::s_headerSize;
-    auto buf = asio::buffer(m_lastReadMessage.getRawData() + headerSize, m_lastReadMessage.getLength());
+    auto buf = asio::buffer(m_lastReceivedFile.getRawData() + headerSize, m_lastReceivedFile.getLength());
     asio::async_read(m_socket, buf,
             [this] (std::error_code ec, size_t)
             {
@@ -74,14 +74,14 @@ void ChatClient::readBody()
                 file.decodeBody();
                 const std::string dialogText = "Receive file \'" + file.getFilename() + "\'? [y/N] ";
                 if (TUIManager::getInstance().yesNoDialog(dialogText)) {
-                Generic::FileUtils::saveFile(file);
+                    Generic::FileUtils::saveFile(file);
                 }
                 TUIManager::getInstance().showInfo("File saved");
                 readHeader();
             });
 }
 
-void ChatClient::sendOne()
+void FTPClient::sendOne()
 {
     const auto headerSize = Generic::FilePackage::s_headerSize;
     auto file = m_filesToSend.front();
@@ -95,7 +95,7 @@ void ChatClient::sendOne()
                 }
                 m_filesToSend.pop();
                 if (!m_filesToSend.empty()) {
-                    writeOne();
+                    sendOne();
                 }
             });
 }

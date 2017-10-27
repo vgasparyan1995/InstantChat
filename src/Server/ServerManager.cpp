@@ -21,9 +21,9 @@ void ServerManager::start()
 {
     asio::io_service service;
     asio::ip::tcp::endpoint endpoint(asio::ip::tcp::v4(), m_port);
-    ChatServer server(service, endpoint);
+    ChatServer cServer(service, endpoint);
     asio::ip::tcp::endpoint ftpEndpoint(asio::ip::tcp::v4(), m_ftpPort);
-    FTServer server(service, ftpEndpoint);
+    FTServer fServer(service, ftpEndpoint);
     service.run();
 }
 

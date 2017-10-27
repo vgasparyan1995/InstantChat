@@ -10,6 +10,7 @@
 #include <ncurses.h>
 
 #include "Generic/ChatMessage.h"
+#include "Generic/FilePackage.h"
 #include "Generic/SingletonBase.h"
 
 namespace Client {
@@ -67,10 +68,10 @@ public:
     void sendFile(const Generic::FilePackage& file);
     void showInfo(const std::string& info);
     bool yesNoDialog(const std::string& question);
-
-private:
     void print(const char* str);
     void print(const char* str, const std::vector<TextAttribute>& style);
+
+private:
     void moveTo(const int y, const int x);
     TUIPoint getCursorPosition() const;
     TUIPoint getRightBottomPosition() const;

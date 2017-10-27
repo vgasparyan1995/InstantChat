@@ -3,7 +3,7 @@
 #include <string>
 #include <thread>
 
-#include "ChatClient.h"
+#include "Generic/ChatMessage.h"
 #include "Generic/SingletonBase.h"
 
 namespace Client {

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "ClientManager.h"
+#include "CommandManager.h"
 #include "ConfigManager.h"
 
 #include "TUIManager.h"
@@ -91,7 +92,7 @@ bool TUIManager::yesNoDialog(const std::string& question)
 {
     print("[Q]", { TextAttribute::BOLD });
     print("\t");
-    print(info.c_str());
+    print(question.c_str());
     auto result = getch();
     return result == 'y' || result == 'Y';
 }

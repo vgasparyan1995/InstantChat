@@ -1,0 +1,33 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_7f104/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_7f104.dir/build.make CMakeFiles/cmTC_7f104.dir/build
+gmake[1]: Entering directory '/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7f104.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_7f104.dir/CheckSymbolExists.c.o   -c /home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_7f104
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7f104.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_7f104.dir/CheckSymbolExists.c.o  -o cmTC_7f104 
+CMakeFiles/cmTC_7f104.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_7f104.dir/build.make:98: cmTC_7f104] Error 1
+gmake[1]: Leaving directory '/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:126: cmTC_7f104/fast] Error 2
+
+File /home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

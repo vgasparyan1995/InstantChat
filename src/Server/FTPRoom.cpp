@@ -5,9 +5,6 @@ namespace Server {
 void FTPRoom::join(FTParticipantPtr participant)
 {
     m_participants.insert(participant);
-    for (const auto& file : m_recentFiles) {
-        participant->deliver(file);
-    }
 }
 
 void FTPRoom::leave(FTParticipantPtr participant)

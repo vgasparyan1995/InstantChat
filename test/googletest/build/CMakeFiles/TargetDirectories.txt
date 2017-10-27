@@ -1,0 +1,4 @@
+/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/rebuild_cache.dir
+/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/gtest.dir
+/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/edit_cache.dir
+/home/vanand/Projects/InstantChat/test/googletest/build/CMakeFiles/gtest_main.dir

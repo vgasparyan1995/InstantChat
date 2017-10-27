@@ -1,6 +1,8 @@
 #include <chrono>
 
+#include "ChatClient.h"
 #include "ConfigManager.h"
+#include "FTPClient.h"
 #include "TUIManager.h"
 
 #include "ClientManager.h"
@@ -11,8 +13,8 @@ SINGLETON_DEFINITION(ClientManager)
 
 bool ClientManager::connectToServer()
 {
-    auto configMgr = ConfigManager::getInstance();
-    const auto host = configMgr.getHost();
+    auto& configMgr = ConfigManager::getInstance();
+    const auto host = configMgr.getServerHost();
     const auto port = configMgr.getPort();
     const auto ftpPort = configMgr.getFTPPort();
     try {

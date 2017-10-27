@@ -2,7 +2,7 @@
 
 #include <asio.hpp>
 
-#include "ChatRoom.h"
+#include "FTPRoom.h"
 
 namespace Server {
 
@@ -15,7 +15,7 @@ private:
     void accept();
 
 private:
-    asio::ip::tcp::acceptor m_accpetor;
+    asio::ip::tcp::acceptor m_acceptor;
     asio::ip::tcp::socket   m_socket;
     FTPRoom                 m_room;
 };

@@ -32,10 +32,8 @@ void TUIManager::start()
         if (line.empty()) {
             continue;
         }
-        if (std::find_if(line.begin(), line.end(), [] (unsigned char ch)
-                    {
-                        return !isspace(ch);
-                    }) == line.end()) {
+        if (line[0] == '!') {
+            CommandManager::getInstance().execute(line.substr(1));
             continue;
         }
         Generic::ChatMessage msg;
@@ -69,6 +67,16 @@ void TUIManager::showReceivedMessage(const Generic::ChatMessage& msg)
 void TUIManager::setMessageWriter(TUIManager::MsgWriter msgWriter)
 {
     m_msgWriter = msgWriter;
+}
+
+void TUIManager::setFileSender(TUIManager::FileSender fileSender)
+{
+    m_fileSender = fileSender;
+}
+
+void TUIManager::sendFile(const Generic::FilePackage& file)
+{
+    m_fileSender(file);
 }
 
 void TUIManager::showInfo(const std::string& info)

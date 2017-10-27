@@ -1,5 +1,6 @@
 #include "FTPClient.h"
 
+#include "Generic/FileUtils.h"
 #include "TUIManager.h"
 
 namespace Client {
@@ -73,7 +74,7 @@ void ChatClient::readBody()
                 file.decodeBody();
                 const std::string dialogText = "Receive file \'" + file.getFilename() + "\'? [y/N] ";
                 if (TUIManager::getInstance().yesNoDialog(dialogText)) {
-                    FileManager::getInstance().saveFile(file);
+                Generic::FileUtils::saveFile(file);
                 }
                 TUIManager::getInstance().showInfo("File saved");
                 readHeader();

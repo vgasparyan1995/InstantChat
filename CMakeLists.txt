@@ -22,6 +22,7 @@ set(SERVER_SRC
 set(CLIENT_SRC
     src/Client/ChatClient.cpp
     src/Client/ClientManager.cpp
+    src/Client/CommandManager.cpp
     src/Client/ConfigManager.cpp
     src/Client/FTPClient.cpp
     src/Client/TUIManager.cpp
@@ -31,6 +32,7 @@ set(CLIENT_SRC
 set (GENERIC_SRC
     src/Generic/ChatMessage.cpp
     src/Generic/FilePackage.cpp
+    src/Generic/FileUtils.cpp
     src/Generic/ConsoleManager.cpp
     src/Generic/SignalHandler.cpp
     src/Generic/SingletonStack.cpp

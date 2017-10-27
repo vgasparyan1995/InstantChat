@@ -28,8 +28,13 @@ bool ClientManager::connectToServer()
             {
                 cClient.write(msg);
             };
+        auto fileSender = [&ftpClient] (const Generic::FilePackage& file)
+            {
+                ftpClient.send(file);
+            };
         auto& tuiMgr = TUIManager::getInstance();
         tuiMgr.setMessageWriter(messageWriter);
+        tuiMgr.setFileSender(fileSender);
         tuiMgr.start();
         cClient.close();
         t.join();

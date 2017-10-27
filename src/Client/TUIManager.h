@@ -57,11 +57,14 @@ SINGLETON_INTERFACE(TUIManager)
 
 private:
     using MsgWriter = std::function<void (const Generic::ChatMessage&)>;
+    using FileSender = std::function<void (const Generic::FilePackage&)>;
 
 public:
     void start();
     void showReceivedMessage(const Generic::ChatMessage& msg);
     void setMessageWriter(MsgWriter msgWriter);
+    void setFileSender(FileSender fileSender);
+    void sendFile(const Generic::FilePackage& file);
     void showInfo(const std::string& info);
     bool yesNoDialog(const std::string& question);
 
@@ -89,6 +92,7 @@ private:
 
     std::mutex  m_readWriteMutex;
     MsgWriter   m_msgWriter;
+    FileSender  m_fileSender;
     Colors      m_colors;
     int         m_currentColor;
     bool        m_started;

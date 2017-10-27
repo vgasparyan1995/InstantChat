@@ -1,6 +1,6 @@
 add_definitions(-std=c++14)
 
-include_directories( "../src" "googletest/include")
+include_directories( "../src" "googletest-master/googletest/include")
 
 find_library(GTEST
     NAMES "gtest"

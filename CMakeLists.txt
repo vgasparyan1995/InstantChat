@@ -38,7 +38,7 @@ set (GENERIC_SRC
     src/Generic/SingletonStack.cpp
     )
 
-add_definitions(-std=c++14 -DASIO_STANDALONE -g)
+add_definitions(-std=c++14 -DASIO_STANDALONE)
 
 add_executable(server ${SERVER_SRC} ${GENERIC_SRC})
 

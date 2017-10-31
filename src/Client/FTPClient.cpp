@@ -73,10 +73,15 @@ void FTPClient::readBody()
                 auto file = m_lastReceivedFile;
                 file.decodeBody();
                 const std::string dialogText = "Receive file \'" + file.getFilename() + "\'? [y/N] ";
+                bool status = false;
                 if (TUIManager::getInstance().yesNoDialog(dialogText)) {
-                    Generic::FileUtils::saveFile(file);
+                    status = Generic::FileUtils::saveFile(file);
                 }
-                TUIManager::getInstance().showInfo("File saved");
+                if (status) {
+                    TUIManager::getInstance().showInfo("File saved");
+                } else {
+                    TUIManager::getInstance().showInfo("File not saved");
+                }
                 readHeader();
             });
 }

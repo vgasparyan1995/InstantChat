@@ -8,7 +8,7 @@
 
 namespace Generic {
 
-using Byte = unsigned char;
+using Byte = char;
 using ByteArray = std::basic_string<Byte>;
 
 template <typename NumericT>

@@ -12,28 +12,28 @@ std::string removeDir(const std::string& filename)
     return filename.substr(pos + 1);
 }
 
-void saveFile(const FilePackage& file)
+bool saveFile(const FilePackage& file)
 {
-    std::basic_ofstream<Byte> outFileStream(file.getFilename(), std::ios::out | std::ios::binary);
+    std::basic_ofstream<Byte> outFileStream(file.getFilename().c_str(), std::ios::out | std::ios::binary);
+    if (!outFileStream.good()) {
+        return false;
+    }
     std::copy(file.getFile().begin(),
               file.getFile().end(),
               std::ostreambuf_iterator<Byte>(outFileStream));
+    return true;
 }
 
 ByteArray readFile(const std::string& filename)
 {
-    std::ifstream inFileStream(filename.c_str(), std::ios::binary);
-    inFileStream.unsetf(std::ios::skipws);
-    std::streampos fileSize;
-    inFileStream.seekg(0, std::ios::end);
-    fileSize = inFileStream.tellg();
-    inFileStream.seekg(0, std::ios::beg);
     ByteArray result;
-    result.reserve(fileSize);
-
-    result.insert(result.begin(),
-                  std::istream_iterator<Byte>(inFileStream),
-                  std::istream_iterator<Byte>());
+    std::ifstream inFileStream(filename.c_str(), std::ios::binary | std::ios::in);
+    if (!inFileStream.good()) {
+        return result;
+    }
+    std::copy(std::istreambuf_iterator<Byte>(inFileStream),
+              std::istreambuf_iterator<Byte>(),
+              std::back_inserter(result));
     return result;
 }
 
